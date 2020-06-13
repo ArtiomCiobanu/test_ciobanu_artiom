@@ -5,7 +5,6 @@ import 'package:test_ciobanu_artiom/Pages/ProductPage.dart';
 
 class ProductCard extends StatefulWidget {
   final ProductInfo productInfo;
-
   ProductCard(this.productInfo);
 
   @override
