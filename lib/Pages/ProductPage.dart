@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test_ciobanu_artiom/Models/ProductInfo.dart';
+import 'package:test_ciobanu_artiom/Models/ProductDBNote.dart';
+import 'package:test_ciobanu_artiom/API/Singletones/DatabaseTools.dart';
 
 class ProductPage extends StatefulWidget {
   final ProductInfo productInfo;
@@ -37,6 +39,18 @@ class ProductPageState extends State<ProductPage> {
     });
 
     return text;
+  }
+
+  void saveProductToDatabase() async {
+    int res;
+    var product = ProductDBNote.fromProductInfo(productInfo);
+    try {
+      res = await DatabaseTools.insertProductDBNote(product);
+    } catch (e) {
+      res = await DatabaseTools.updateProductDBNote(product);
+    }
+
+    print(res);
   }
 
   ProductPageState(this.productInfo, this.priceText, this.oldPriceText);
@@ -85,6 +99,7 @@ class ProductPageState extends State<ProductPage> {
                                     setState(() {
                                       productInfo.isFavorite =
                                           !productInfo.isFavorite;
+                                      saveProductToDatabase();
                                     });
                                   },
                                   icon: Icon(
@@ -175,6 +190,7 @@ class ProductPageState extends State<ProductPage> {
                         color: Color.fromARGB(255, 49, 27, 146),
                         onPressed: () {
                           productInfo.addedToCart = true;
+                          saveProductToDatabase();
                         },
                       ),
                     ),
@@ -191,7 +207,8 @@ class ProductPageState extends State<ProductPage> {
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       color: Color.fromARGB(255, 106, 27, 154),
-                      onPressed: () {},
+                      onPressed: () {
+                      },
                     ),
                   ),
                 )),

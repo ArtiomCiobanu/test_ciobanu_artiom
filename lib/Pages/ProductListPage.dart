@@ -7,6 +7,7 @@ import 'package:test_ciobanu_artiom/Models/ProductInfo.dart';
 import 'package:test_ciobanu_artiom/Pages/FavoritesPage.dart';
 import 'package:test_ciobanu_artiom/Pages/ShoppingCartPage.dart';
 import 'package:test_ciobanu_artiom/UI_Elements/ProductCard.dart';
+import 'package:test_ciobanu_artiom/API/Singletones/DatabaseTools.dart';
 
 class ProductListPage extends StatefulWidget {
   ProductListPage({Key key}) : super(key: key);
@@ -37,10 +38,20 @@ class ProductListPageState extends State<ProductListPage> {
   Future loadProducts() async {
     if (pageNumber < lastPageNumber) {
       try {
+        var favoriteProducts = await DatabaseTools.getProductDBNotes();
         var data = await HttpTools.getProductInfoAsync(pageNumber * 10, 10);
         data.forEach((value) {
           setState(() {
             var productInfo = ProductInfo.fromJson(value);
+
+            var dbInfo = favoriteProducts
+                .singleWhere((p) => p.id == productInfo.id, orElse: () => null);
+
+            if (dbInfo != null) {
+              productInfo.isFavorite = dbInfo.isFavorite;
+              productInfo.addedToCart = dbInfo.isAddedToCart;
+            }
+
             products.add(productInfo);
             productCards.add(ProductCard(productInfo));
           });
@@ -77,7 +88,6 @@ class ProductListPageState extends State<ProductListPage> {
   ProductListPageState() {
     loadProducts();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

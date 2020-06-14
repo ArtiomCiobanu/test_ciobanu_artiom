@@ -1,4 +1,4 @@
-#Sun Jun 14 12:31:34 EEST 2020
+#Sun Jun 14 15:24:38 EEST 2020
 base.0=C\:\\Projects\\Flutter projects\\Test Ciobanu Artiom\\test_ciobanu_artiom\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
