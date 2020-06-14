@@ -1,11 +1,16 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 class ProductInfo {
   final int id;
   final String title;
   final String shortDescription;
-  final String image;
+  final String imageUrl;
   final int price;
   final int salePrecent;
   final String details;
+
+  Image productImage;
 
   bool isFavorite = false;
   bool addedToCart = false;
@@ -16,10 +21,12 @@ class ProductInfo {
       {this.id = 0,
       this.title = "",
       this.shortDescription = "",
-      this.image = "",
+      this.imageUrl = "",
       this.price = 0,
       this.salePrecent = 1,
       this.details = ""}) {
+    productImage = Image.network(imageUrl);
+
     if (salePrecent == 0) {
       finalPrice = price;
     } else {
@@ -34,7 +41,7 @@ class ProductInfo {
       id: data['id'],
       title: data['title'],
       shortDescription: data['short_description'],
-      image: data['image'],
+      imageUrl: data['image'],
       price: data['price'],
       salePrecent: data['sale_precent'],
       details: data['details'],

@@ -17,6 +17,8 @@ class ProductCardState extends State<ProductCard> {
   String priceText = "";
   String oldPriceText = "";
 
+  Image productImage;
+
   ProductCardState(this.productInfo) {
     if (productInfo.finalPrice < productInfo.price) {
       priceText = "\$${productInfo.finalPrice.toString()}, - ";
@@ -42,9 +44,9 @@ class ProductCardState extends State<ProductCard> {
           margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
           child: Column(
             children: <Widget>[
-              Image.network(
-                productInfo.image,
+              Container(
                 height: 200,
+                child: productInfo.productImage
               ),
               Container(
                 margin: EdgeInsets.only(top: 10.0, bottom: 10.0),

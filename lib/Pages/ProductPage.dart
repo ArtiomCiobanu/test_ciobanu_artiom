@@ -57,9 +57,9 @@ class ProductPageState extends State<ProductPage> {
                   padding: EdgeInsets.only(top: 40.0, bottom: 30.0),
                   child: Column(
                     children: <Widget>[
-                      Image.network(
-                        productInfo.image,
+                      Container(
                         height: MediaQuery.of(context).size.width * 0.8,
+                        child: productInfo.productImage,
                       ),
                       Container(
                           margin: EdgeInsets.only(top: 30, bottom: 10),
@@ -108,13 +108,11 @@ class ProductPageState extends State<ProductPage> {
                         children: <Widget>[
                           Text(
                             priceText,
-                            //"\$${productInfo.finalPrice.toString()},- ",
                             style:
                                 TextStyle(fontSize: 30.0, color: Colors.blue),
                           ),
                           Text(
                             oldPriceText,
-                            //"\$${productInfo.price.toString()}",
                             style: TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 fontSize: 27.0),
