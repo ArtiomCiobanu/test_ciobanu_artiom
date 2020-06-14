@@ -4,15 +4,21 @@ import 'package:test_ciobanu_artiom/Models/ProductInfo.dart';
 
 class ProductPage extends StatefulWidget {
   final ProductInfo productInfo;
+  final String priceText;
+  final String oldPriceText;
 
-  ProductPage(this.productInfo, {Key key}) : super(key: key);
+  ProductPage(this.productInfo, this.priceText, this.oldPriceText, {Key key})
+      : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => ProductPageState(productInfo);
+  State<StatefulWidget> createState() =>
+      ProductPageState(productInfo, priceText, oldPriceText);
 }
 
 class ProductPageState extends State<ProductPage> {
   final ProductInfo productInfo;
+  final String priceText;
+  final String oldPriceText;
 
   Color getFavoriteIconColor() {
     if (productInfo.isFavorite) {
@@ -33,7 +39,7 @@ class ProductPageState extends State<ProductPage> {
     return text;
   }
 
-  ProductPageState(this.productInfo);
+  ProductPageState(this.productInfo, this.priceText, this.oldPriceText);
 
   @override
   Widget build(BuildContext context) {
@@ -101,12 +107,14 @@ class ProductPageState extends State<ProductPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "\$${productInfo.finalPrice.toString()},- ",
+                            priceText,
+                            //"\$${productInfo.finalPrice.toString()},- ",
                             style:
                                 TextStyle(fontSize: 30.0, color: Colors.blue),
                           ),
                           Text(
-                            "\$${productInfo.price.toString()}",
+                            oldPriceText,
+                            //"\$${productInfo.price.toString()}",
                             style: TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 fontSize: 27.0),

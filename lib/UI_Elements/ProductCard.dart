@@ -31,8 +31,11 @@ class ProductCardState extends State<ProductCard> {
     return RaisedButton(
       color: Colors.white,
       onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ProductPage(productInfo)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    ProductPage(productInfo, priceText, oldPriceText)));
       },
       child: Center(
         child: new Container(
