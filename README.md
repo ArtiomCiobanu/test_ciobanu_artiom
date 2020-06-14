@@ -1,7 +1,7 @@
 # test_ciobanu_artiom
 
 Test app for EBS Integrator internship.
-With SQL database and app caching.
+With SQL database and image caching.
 
 Video: 
 https://youtu.be/XmdjPN4rmMM
