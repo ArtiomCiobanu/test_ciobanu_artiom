@@ -1,6 +1,9 @@
 # test_ciobanu_artiom
 
-A new Flutter project.
+Test app for EBS Integrator internship
+
+Video: 
+https://youtu.be/XmdjPN4rmMM
 
 ## Getting Started
 
